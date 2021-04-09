@@ -5,15 +5,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UiService {
-  private showProgress: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  private isloading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  
   constructor() { }
 
-  getShowProgress(): Observable<boolean> {
-    return this.showProgress.asObservable();
+  getIsloading(): Observable<boolean> {
+    return this.isloading.asObservable();
   }
 
-  saveShowProgress(value: boolean): void {
-    this.showProgress.next(value);
+  saveIsloading(value: boolean): void {
+    this.isloading.next(value);
   }
 }

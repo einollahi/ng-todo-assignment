@@ -1,0 +1,18 @@
+<mat-form-field [appearance]="appearance">
+  <mat-label [ngStyle]="{'padding': icon ? '0 1.5rem 0 0' : '0'}">{{label || ''}}</mat-label>
+  <mat-select [multiple]="multiple || false" color="warn"
+    [formControl]="control"
+    [required]="required"
+    [placeholder]="placeholder"
+    [matTooltip]="tooltip"
+    [matTooltipPosition]="tooltipPosition || 'below'"
+    [matTooltipHideDelay]="tooltipHideDelay || 200"
+    [matTooltipShowDelay]="tooltipShowDelay || 200"
+    (selectionChange)="onSelectionChange($event.value)"
+  >
+    <mat-option *ngFor="let item of list"
+    [value]="bindValue ? item[bindValue] : item">{{bindLabel ? item[bindLabel] : item}}</mat-option>
+  </mat-select>
+  <mat-hint *ngIf="hint">{{hint}}</mat-hint>
+  <mat-error *ngIf="control.invalid">{{getErrorMessage()}}</mat-error>
+</mat-form-field>

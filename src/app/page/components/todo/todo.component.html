@@ -1,0 +1,47 @@
+<mat-card class="container mt-4 mb-2 info-card mat-elevation-z4" [formGroup]="todoForm">
+  <div class="row px-4 align-items-center">
+    <app-input class="col-12 col-md-8 col-lg-9 p-2" formControlName="title" label="title:" placeholder="title"></app-input>
+    <app-checkbox class="col-12 col-md-4 col-lg-3 p-2" formControlName="completed" label="Is Completed:"></app-checkbox>
+  </div>
+  <div class="row my-2 px-4 justify-content-end">
+    <button mat-raised-button class="row btn btn-info" [disabled]="todoForm.invalid" (click)="createOrEditTodo()">{{editMode ? 'Edit' : 'Add'}}</button>
+    <button *ngIf="editMode" mat-raised-button class="row btn btn-danger" [disabled]="todoForm.invalid" (click)="cancelTodo()">Cancel</button>
+  </div>
+</mat-card>
+
+<mat-card class="container mt-4 info-card mat-elevation-z4">
+  <div class="row">
+    <app-input class="col-12 col-sm-6 col-md-8" [formControl]="searchField" label="Search" appearance="outline" (input)="applySearch()"></app-input>
+    <app-select class="col-12 col-sm-6 col-md-4" [formControl]="statusField" label="Status" appearance="outline"
+    [list]="[null, false, true]"></app-select>
+  </div>
+  
+  <div *ngIf="dataSource.data.length" class="overflow-auto">
+    <table mat-table [dataSource]="dataSource" matSort>
+      
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column}}</th>
+        <td mat-cell [ngSwitch]="column" *matCellDef="let element">
+          <div *ngSwitchCase="'edit'"><button mat-mini-fab class="bg-warning text-dark" (click)="editTodoItem(element['id'])"><mat-icon>edit</mat-icon></button></div>
+          <div *ngSwitchCase="'delete'"><button mat-mini-fab class="bg-danger" (click)="deleteTodoItem(element['id'])"><mat-icon>delete</mat-icon></button></div>
+          <div *ngSwitchCase="'completed'">
+            <mat-icon *ngIf="element[column]; else elseBlock" class="text-success">done</mat-icon>
+            <ng-template #elseBlock>
+              <mat-icon class="text-danger">close</mat-icon>
+            </ng-template>
+          </div>
+          <div *ngSwitchDefault>{{element[column]}}</div>
+        </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>"
+      
+    </table>
+    
+    <mat-paginator [pageSizeOptions]="[10,20,50]"></mat-paginator>
+  </div>
+  
+  <app-label *ngIf="!dataSource.data.length" label="There is nothing to show!" appearance="outline" disabled></app-label>
+</mat-card>
+<br>

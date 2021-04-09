@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InputComponent } from './components/elements/input/input.component';
 import { TextareaComponent } from './components/elements/textarea/textarea.component';
 import { CheckboxComponent } from './components/elements/checkbox/checkbox.component';
+import { SelectComponent } from './components/elements/select/select.component';
 
 // business components
 
@@ -20,6 +21,7 @@ const sharedComponents: any[] = [
   InputComponent,
   TextareaComponent,
   CheckboxComponent,
+  SelectComponent
 ];
 const modules: any[]= [
   CommonModule,

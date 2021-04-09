@@ -21,10 +21,8 @@ export class TextareaComponent extends BaseFormField {
   }
 
   getErrorMessage() {
-    if (this.control.hasError('required')) return this.label ? `تکمیل فیلد ${this.label} الزامی است.` : 'تکمیل این مورد الزامی است.';
-    if (this.control.hasError('pattern')) return 'الگوی وارد شده صحیح نیست';
-    if (this.control.hasError('minlength')) return 'الگوی وارد شده صحیح نیست';
-    if (this.control.hasError('maxlength')) return 'الگوی وارد شده صحیح نیست';
+    if (this.control.hasError('required')) return 'this field is required.';
+    if (this.control.hasError('pattern')) return 'the pattern is not correct';
   }
 
 }
