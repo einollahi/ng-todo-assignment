@@ -1,0 +1,12 @@
+<mat-checkbox style="margin: 0 1rem;"
+  [formControl]="control"
+  [checked]="checked"
+  [required]="required"
+  [labelPosition]="labelPosition"
+  [matTooltip]="tooltip"
+  [matTooltipPosition]="tooltipPosition || 'below'"
+  [matTooltipHideDelay]="tooltipHideDelay || 200"
+  [matTooltipShowDelay]="tooltipShowDelay || 200"
+>
+  <span style="padding: 0 .5rem;">{{label || ''}}</span>
+</mat-checkbox>

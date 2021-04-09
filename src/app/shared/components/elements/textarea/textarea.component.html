@@ -1,0 +1,19 @@
+
+<mat-form-field [appearance]="appearance">
+  <mat-label *ngIf="label" [ngStyle]="{'padding': icon ? '0 0 0 1.5rem' : '0'}">{{label}}</mat-label>
+  <div style="display: flex; align-items: center;">
+    <textarea matInput [formControl]="control" autocomplete="off"
+      [required]="required"
+      [placeholder]="placeholder"
+      [matTooltip]="tooltip"
+      [matTooltipPosition]="tooltipPosition || 'below'"
+      [matTooltipHideDelay]="tooltipHideDelay || 200"
+      [matTooltipShowDelay]="tooltipShowDelay || 200"
+    >
+    </textarea>
+    <mat-icon *ngIf="icon" matPrefix style="order: -1;">{{icon}}</mat-icon>
+  </div>
+  <mat-hint *ngIf="hint">{{hint}}</mat-hint>
+  <mat-error *ngIf="control?.invalid">{{getErrorMessage()}}</mat-error>
+</mat-form-field>
+
